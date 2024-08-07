@@ -32,6 +32,16 @@ of all the exposures; it takes like half an hour on my machine.
 There are 31 842 exposures of WD candidates (selected from Gentile Fusillo+19), some of which have very low signal-to-noise (classification `"NULL"`) which are discarded by Manser+24.
 The `exposures.npz` file contains 28901 exposures of 3673 WD candidates.
 
+Many of these WD candidates have been exposed multiple times.
+The exposures are stacked by the program `src/scripts/stack_exposures.py`, which produces `src/data/coadded_spectra.npz`, containing the
+- names,
+- wavelengths,
+- fluxes,
+- ivars, and
+- spectral classifications
+of all the 3673 WD candidates.
+
+
 ## References
 Manser+24:
 https://ui.adsabs.harvard.edu/abs/2024arXiv240218641M/abstract
