@@ -41,6 +41,12 @@ The exposures are stacked by the program `src/scripts/stack_exposures.py`, which
 - spectral classifications
 of all the 3673 WD candidates.
 
+### Gentile Fusillo data
+
+With all the names of the WD candidates, we can get some extra data (e.g. estimated temperatures, Gaia params) from Gentile Fusillo+19.
+This is carried out by `src/scripts/get_gf19_data.py`, which uses `pyvo` to join the DESI EDR WD catalogue with that from GF+19.
+The resulting sub-catalogue is in `src/data/gf19.csv`.
+
 
 ## References
 Manser+24:
