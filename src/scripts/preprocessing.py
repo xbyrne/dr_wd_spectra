@@ -7,7 +7,7 @@ Contains functions for preprocessing the data.
 import numpy as np
 
 
-def interp_if_snr_low(wlen, spectra, ivar, snr_threshold=0.1):
+def interp_if_snr_low(wlen, spectra, ivar, snr_threshold=0.2):
     """
     Interpolates over regions of low S/N.
     """
