@@ -12,12 +12,14 @@ wlen = fl["wavelengths"]
 flux = fl["fluxes"]
 ivar = fl["ivars"]
 
-i = 3399
+i = 3399  # Cherry-picked for demonstration purposes
 original_spectrum = flux[i]
 
+# Aesthetic
 LW = 0.5
 title_loc = [0.975, 0.75]
 ypad = 100
+
 snr_cut = 0.2
 snr = np.abs(flux[i]) * np.sqrt(ivar[i])
 
@@ -25,11 +27,11 @@ fg, axs = plt.subplots(
     3, 1, figsize=(12, 6), gridspec_kw={"hspace": 0.0, "height_ratios": [2, 1, 2]}
 )
 
+# Original spectrum
 ax = axs[0]
 ax.plot(wlen, original_spectrum, c="k", lw=LW)
 ax.set_ylim(-7, 29)
-# ax.set_ylabel("Flux [$10^{-17}$ erg s$^{-1}$ cm$^{-2}$ Å$^{-1}$]", fontsize=20)
-ax.set_ylabel("Flux [arb.]", fontsize=20)
+ax.set_ylabel("Flux [arb.]", fontsize=20)  # In fact, 10^-17 erg s^-1 cm^-2 Å^-1
 ax.set_title(
     "Original",
     fontsize=20,
@@ -38,6 +40,7 @@ ax.set_title(
     loc="right",
 )
 
+# S/N
 ax = axs[1]
 ax.plot(wlen, np.log10(snr), c="k", lw=LW)
 ax.annotate(
@@ -50,6 +53,7 @@ ax.axhline(np.log10(snr_cut), c="r", ls="-.", lw=1)
 ax.set_ylabel(r"$\log(\text{S/N})$", fontsize=20)
 ax.set_ylim(-1.1, 1.7)
 
+# Preprocessed spectrum
 ax = axs[2]
 denoised_spectrum = pp.interp_if_snr_low(
     wlen, original_spectrum, ivar[i], snr_threshold=snr_cut
@@ -66,15 +70,16 @@ ax.set_title(
     loc="right",
 )
 ax.set_xlabel("Wavelength [Å]", fontsize=20)
-ax.axhline(0, c="k", ls="--", lw=1)
+ax.axhline(0, c="k", ls="--", lw=1)  # Zero mark
 
+# Aesthetic
 for ax in axs:
     ax.margins(-0.02)
     ax.tick_params(
         axis="both", which="major", top=True, right=True, direction="in", labelsize=16
     )
-
 fg.align_ylabels(axs)
-
 fg.tight_layout()
+
+# Save
 fg.savefig("../tex/figures/fig1_preprocessing.pdf", dpi=300)
