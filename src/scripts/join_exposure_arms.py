@@ -80,13 +80,13 @@ def join_arms(b_fl, r_fl, z_fl):
     # Non-overlapping regions
     # b
     flux[: B_BINS - OVERLAP_BR] = b_data[:-OVERLAP_BR, 1]
-    ivar[: B_BINS - OVERLAP_BR] = b_data[:-OVERLAP_BR, 2]
+    ivar[: B_BINS - OVERLAP_BR] = b_data[:-OVERLAP_BR, 2] + 1e-20
     # r
     flux[B_BINS:-Z_BINS] = r_data[OVERLAP_BR:-OVERLAP_RZ, 1]
-    ivar[B_BINS:-Z_BINS] = r_data[OVERLAP_BR:-OVERLAP_RZ, 2]
+    ivar[B_BINS:-Z_BINS] = r_data[OVERLAP_BR:-OVERLAP_RZ, 2] + 1e-20
     # z
     flux[-Z_BINS + OVERLAP_RZ :] = z_data[OVERLAP_RZ:, 1]
-    ivar[-Z_BINS + OVERLAP_RZ :] = z_data[OVERLAP_RZ:, 2]
+    ivar[-Z_BINS + OVERLAP_RZ :] = z_data[OVERLAP_RZ:, 2] + 1e-20
 
     # Overlapping regions
     # b-r
@@ -106,12 +106,15 @@ def join_arms(b_fl, r_fl, z_fl):
 def combine_spectral_overlap(arm1, arm2):
     """
     Statistically combines the fluxes in overlapping spectral regions of two arms.
-    arm1[:,1] and arm2[:,1] are the fluxes, and arm1[:,2] and arm2[:,2] are the ivars.
+    `arm1[:,1]` and `arm2[:,1]` are the fluxes, and `arm1[:,2]` and `arm2[:,2]` are the ivars.
     """
-    combined_fluxes = (arm1[:, 1] * arm1[:, 2] + arm2[:, 1] * arm2[:, 2]) / (
-        arm1[:, 2] + arm2[:, 2]
-    )
-    combined_ivars = arm1[:, 2] + arm2[:, 2]
+    flx1 = arm1[:, 1]
+    flx2 = arm2[:, 1]
+    ivr1 = arm1[:, 2] + 1e-20
+    ivr2 = arm2[:, 2] + 1e-20
+
+    combined_fluxes = (flx1 * ivr1 + flx2 * ivr2) / (ivr1 + ivr2)
+    combined_ivars = ivr1 + ivr2
     return combined_fluxes, combined_ivars
 
 
