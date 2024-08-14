@@ -372,11 +372,11 @@ It is somewhat surprising that there is a gap between the two sequences.
 Based on the observations outlined above, this region should be populated with DCs of 
 %%% FIXME Do H eq width fitting
 
-The automated nature of DR can also protect against human error in the visual classification of WD spectra.
+The automated nature of DR can protect against human error in the visual classification of WD spectra.
 Fig.~\ref{fig:DZisland} shows a zoom-in towards the top of the embedding around an island populated mostly by WDs with primary classification DZ.
 According to the extensive visual classifications of \citet{manser24}, this island also contains a DBZ (J133305.34+325400.11) and a DC (J160711.86+532157.65).
 These objects appear to have been grouped together owing to the presence of Ca~H and K lines in all the spectra, including the putative DC.
-The presence of Ca absorption lines in the DC's spectrum suggests that this WD is in fact a DZ; indeed \citet{kleinman13} classify this source as a DZ based on SDSS DR7 data.
+The presence of Ca absorption lines in the DC's spectrum suggests that this WD is in fact a DZ; indeed \citet{kleinman13} classify this source as a DZ based on its SDSS DR7 spectrum.
 The bottom panel of Figure~\ref{fig:DZisland} shows the absorption lines to be quite weak, and would probably not have been noticeable without zooming in.
 While large visual classification campaigns are reliable, this illustrates that errors are nonetheless possible, and that such errors can be easily identified with automated methods such as DR.
 
@@ -395,13 +395,13 @@ While large visual classification campaigns are reliable, this illustrates that 
 \subsection{Classification using specific spectral regions}
 \label{sec:zoom}
 
+As mentioned in Section~\ref{sec:preprocessing}, DR treats all components of a vector -- i.e., all wavelengths -- equally, but wavelengths including spectral features are of particular interest.
 In this subsection we explore the use of cropping the spectrum, to a window around some particular spectral line, to see if DR can better separate individual spectral classes from the rest.
 
 \subsubsection{DBs}
 \label{sec:DBs}
 
-We first explore whether WDs featuring He lines can be separated out from those which do not; for the purposes of this subsection we denote all such WDs as DBs, inclusive of DABs, DBZs, etc.
-As part of preprocessing, the spectra are now cropped to the range $\lambda \in \qty[5800, 6200]\,\text{\AA}$, a window which includes two He lines at $5876$ and $6068\,\text{\AA}$.
+We first crop the spectra to the range $\lambda \in \qty[5800, 6200]\,\text{\AA}$, a window which includes a He line at $5876$, and a smaller line at $6068\,\text{\AA}$.
 The dimensionality of the spectra cropped to this wavelength range is $D=500$, much lower than $D=7781$ for the full spectra.
 The result of applying DR to this cropped dataset is shown in Fig.~\ref{fig:He_lines}.
 
