@@ -6,11 +6,11 @@ Using dimensionality reduction to get a quick overview of a spectroscopic datase
 
 The exposures of WD candidates targeted in the DESI EDR are available in a .tar.gz file hosted on Zenodo.
 These data are publicly available at https://data.desi.lbl.gov/public/, but it's difficult to query particular objects without having to download the whole EDR.
-The exposures for the 3673 WD candidates targeted by the DESI EDR with usable spectroscopy (median S/R > 0.5 in all three arms) were selected by Christopher J. Manser (see Manser+24), and it is these objects whose exposures are first downloaded.
+The exposures for the 3 673 WD candidates targeted by the DESI EDR with usable spectroscopy (median S/R > 0.5 in all three arms) were selected by Christopher J. Manser (see Manser+24), and it is these objects whose exposures are first downloaded.
 
 To download them, `cd` into `src/scripts` and run `bash download_desi_data.sh`, which downloads `Exposures.tar.gz` from Zenodo (https://zenodo.org/records/11548859) and untars them.
 `Exposures.tar.gz` is about 8GB in size and takes a few minutes to download.
-The untarring takes rather longer, and the resulting src/data/Exposures folder is about 20GB.
+The untarring takes rather longer, and the resulting `src/data/Exposures` folder is about 20GB.
 
 To get visual spectral classifications of the WDs in the DESI EDR, we use the catalogue of Manser+24.
 This is also downloaded from Zenodo (https://zenodo.org/records/10620344).
@@ -30,7 +30,7 @@ Running the program produces the file `src/data/exposures.npz`, containing the
 - spectral classifications
 of all the exposures; it takes like half an hour on my machine.
 There are 31 842 exposures of WD candidates (selected from Gentile Fusillo+19), some of which have very low signal-to-noise (classification `"NULL"`) which are discarded by Manser+24.
-The `exposures.npz` file contains 28901 exposures of 3673 WD candidates.
+The `exposures.npz` file contains 28 901 exposures of 3 673 WD candidates.
 
 Many of these WD candidates have been exposed multiple times.
 The exposures are stacked by the program `src/scripts/stack_exposures.py`, which produces `src/data/coadded_spectra.npz`, containing the
@@ -39,7 +39,7 @@ The exposures are stacked by the program `src/scripts/stack_exposures.py`, which
 - fluxes,
 - ivars, and
 - spectral classifications
-of all the 3673 WD candidates.
+of all the 3 673 WD candidates.
 
 ### Gentile Fusillo data
 
