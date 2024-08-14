@@ -40,7 +40,13 @@ def create_legend_handles():
     def header_handle(label):
         """Blank handle to make a subheading for the legend"""
         return plt.Line2D(
-            [0], [0], marker="o", color="w", markerfacecolor="w", label=label
+            [0],
+            [0],
+            marker="o",
+            color="w",
+            alpha=0.0,
+            markerfacecolor="w",
+            label=label,
         )
 
     def class_handle(label, colour, **kwargs):
@@ -67,6 +73,7 @@ def create_legend_handles():
                 markersize=10,
             )
         )
+    handles = handles[:4] + [header_handle("")] + handles[4:]  # Add a blank line
     # Others
     handles.append(header_handle("Other"))
     for cl_code in ["WM", "CV", "sd", "ST", "EX", "UN"]:
@@ -86,6 +93,7 @@ def create_legend_handles():
                 markeredgewidth=2,
             )
         )
+    handles = handles[:12] + [header_handle("")] + handles[12:]  # Add a blank line
     return handles
 
 
@@ -118,13 +126,13 @@ if __name__ == "__main__":
     # Labelled plot
 
     fg, axs = plt.subplots(
-        1,
-        3,
-        figsize=(14, 6),
-        gridspec_kw={"wspace": 0.0, "hspace": 0.0, "width_ratios": [1, 1, 0.05]},
+        2,
+        2,
+        figsize=(12, 7),
+        gridspec_kw={"wspace": 0.0, "hspace": 0.0, "height_ratios": [1, 0.05]},
     )
 
-    ax = axs[0]
+    ax = axs[0, 0]
 
     fl = np.load("../data/coadded_spectra.npz", allow_pickle=True)
     names = fl["names"]
@@ -150,25 +158,35 @@ if __name__ == "__main__":
 
     leg = ax.legend(
         handles=create_legend_handles(),
-        bbox_to_anchor=(0.0, 1.022),
+        bbox_to_anchor=(1.0, 0.0),
         fontsize=17,
-        # ncol=2,
-        # columnspacing=0.0,
+        ncol=4,
+        columnspacing=-0.5,
+        frameon=False,
     )
-    for i in [0, 7]:
+    for i in [0, 8]:
         leg.get_texts()[i].set_weight("bold")  # Bold the headers
-        # leg.get_texts()[i].set_position((-20, 0))  # Move the headers to the left
+        leg.get_texts()[i].set_position((-17, 0))  # Move the headers to the left
+    # for t in leg.get_texts():
+    #     t.set_position((-15, 0))
+    # for t in leg.get_texts()[4:]:
+    #     t.set_position((-40, 0))
+    for h in leg.legend_handles:
+        h.set_data(
+            [x + 20 for x in h.get_data()[0]],  # Move the markers to the left
+            h.get_data()[1],
+        )
 
     ax.annotate(
         "(b)",
-        xy=(0.02, 0.93),
+        xy=(0.02, 0.94),
         xycoords="axes fraction",
         fontsize=20,
     )
 
     # -------------------
     # Temperature coding
-    ax = axs[1]
+    ax = axs[0, 1]
 
     gf19 = pd.read_csv("../data/gf19.csv", index_col=0)
 
@@ -183,9 +201,9 @@ if __name__ == "__main__":
         cmap=teff_cmp,
     )
 
-    ax.annotate("(c)", xy=(0.02, 0.93), xycoords="axes fraction", fontsize=20)
+    ax.annotate("(c)", xy=(0.02, 0.94), xycoords="axes fraction", fontsize=20)
 
-    cbar = fg.colorbar(sc, cax=axs[2])
+    cbar = fg.colorbar(sc, cax=axs[1, 1], orientation="horizontal")
     cbar.set_label(r"$T_\text{eff}\; [10^3\,\text{K}]$", fontsize=20)
     T_ticks = np.array(
         [
@@ -200,17 +218,19 @@ if __name__ == "__main__":
         ]
     )
     cbar.set_ticks(np.log10(T_ticks))
-    cbar.set_ticklabels([f"${int(T/1e3)}\,000$" for T in T_ticks], fontsize=16)
+    cbar.set_ticklabels([f"${int(T/1e3)}$" for T in T_ticks], fontsize=16)
 
     # -------------------
     # Aesthetic
-    for ax in axs[:2]:
+    for ax in axs[0, :]:
         # ax.set_xlabel("t-SNE 1", fontsize=20)
         ax.set_xticks([])
         ax.set_yticks([])
+
+    axs[1, 0].axis("off")
 
     # -------------------
     # Saving
 
     fg.tight_layout()
-    fg.savefig("../tex/figures/fig2b_embedding.pdf", dpi=300)
+    fg.savefig("../tex/figures/fig2b_embedding.pdf", dpi=300, bbox_inches="tight")
