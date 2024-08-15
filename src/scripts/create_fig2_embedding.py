@@ -99,7 +99,7 @@ def create_legend_handles():
 
 if __name__ == "__main__":
 
-    fl = np.load("../data/embedding.npz", allow_pickle=True)
+    fl = np.load("../data/embedding_full.npz", allow_pickle=True)
     names = fl["names"]
     embedding = fl["embedding"]
 

@@ -16,7 +16,7 @@ flux = fl["fluxes"]
 ivar = fl["ivars"]
 classes = fl["classifications"]
 
-fl = np.load("../data/embedding.npz", allow_pickle=True)
+fl = np.load("../data/embedding_full.npz", allow_pickle=True)
 embedding = fl["embedding"]
 
 fg, axs = plt.subplots(
