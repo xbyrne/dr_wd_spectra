@@ -28,7 +28,7 @@ if __name__ == "__main__":
     pp_flux = pp.meanstd(pp.interp_if_snr_low(wlen, flux, ivar))
     embedding_full = reduce(pp_flux)
 
-    He_line_mask = (wlen > 5800) & (wlen < 6200)
+    He_line_mask = (wlen > 5500) & (wlen < 6100)
     pp_flux = pp.meanstd(
         pp.interp_if_snr_low(
             wlen[He_line_mask], flux[:, He_line_mask], ivar[:, He_line_mask]
