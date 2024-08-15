@@ -363,7 +363,7 @@ These observations therefore suggest that the two main clusters in the embedding
 
 Briefly, we discuss the presence of a small number of DAs in the cool end of the He-atmosphere sequence (see Fig.~\ref{fig:full_spectra}(b), just above centre), of which there are 43.
 Of these, 24 are classified by \citet{manser24} as DAH, DAe, DAP, or some combination of these secondary classifications.
-We believe that these are found in the He-atmosphere sequence as the Swan bands of the DQs are mimicked by Zeeman-split Balmer features of a DAH, emission features of a DAe, or other unidentified features in DAPs.
+We believe that these are found in the He-atmosphere sequence as the Swan bands of the DQs are mimicked by the Zeeman-split Balmer features of a DAH, emission features of a DAe, or other unidentified features in DAPs.
 The remaining 19 DAs here are either pure DAs, DABs, DAZs, or some combination of these.
 These DAs are invariably warm ($\Teff \gtrsim 7000\,\text{K}$) and have weak Balmer lines, making them appear similar to DCs of a similar temperature.
 It is thus understandable that these DAs are projected near to these warm (thus He-atmosphere) DCs.
@@ -401,41 +401,34 @@ In this subsection we explore the use of cropping the spectrum, to a window arou
 \subsubsection{DBs}
 \label{sec:DBs}
 
-We first crop the spectra to the range $\lambda \in \qty[5800, 6200]\,\text{\AA}$, a window which includes a He line at $5876$, and a smaller line at $6068\,\text{\AA}$.
-The dimensionality of the spectra cropped to this wavelength range is $D=500$, much lower than $D=7781$ for the full spectra.
+We first crop the spectra to the range $\lambda \in \qty[5500, 6100]\,\text{\AA}$, a window which includes a He line at $5876\,\text{\AA}$.
+The dimensionality of the spectra cropped to this wavelength range is $D=750$, much lower than $D=7781$ for the full spectra.
 The result of applying DR to this cropped dataset is shown in Fig.~\ref{fig:He_lines}.
 
-DR separates an island of exactly 200 objects, containing the vast majority ($183/209=88$ per cent) of DBs.
-The second panel of Fig.~\ref{fig:He_lines} demonstrates that the DBs which dominate the island are selected primarily due to their strong $5876\,\text{\AA}$ absorption.
+DR separates an island of around 200 objects, containing the vast majority ($\approx 180/200=90$ per cent) of DBs.
+The second panel of Fig.~\ref{fig:He_lines} demonstrates that the DBs (as well as DABs, etc.) which dominate the island are isolated primarily to their strong $5876\,\text{\AA}$ absorption.
 This shared feature causes the spectral vectors to be close together in data space; this is preserved by DR in two dimensions.
 
-The third panel of this figure shows three examples of `contaminants': false positives that are projected onto the outskirts of this island that are not DBs.
-These false positives include: five objects which \citet{manser24} were unable to classify; five DC or DC:s; four extragalactic sources, a DZ, a main-sequence star, and a white-dwarf-main-sequence binary.
-For several of these spectra, such as those shown, it is difficult to tell why they have been projected near to genuine DBs, given the lack of a clear He feature.
-In some cases there is a small dip in the spectrum at around the right wavelength, but the general appearance of the spectra suggests these dips to be merely noise.
+The third panel of this figure shows three examples of false positives that are projected onto this island despite not being DBs.
+For some of these spectra there is perhaps a very shallow or broad absorption feature, but it is difficult to tell by eye.
+These spectra also appear to be relatively noisy, so these spectra may have been projected nearby due to coincidentally-shared noise.
 The distinction between a genuine weak spectral feature and noise would be difficult for dimensionality reduction to ascertain, as it does not account for variations in flux between different spectral bins of the same spectrum, but rather differences in flux in the same bin between different spectra.
 
-The bottom panel of Fig.~\ref{fig:He_lines} shows DBs which are not together with the rest of the DBs on the island: `false negatives'.
-The first two are members of a small `enclave' of DBs towards the top left of the main continent, shown in the top panel.
-The DBs in this enclave show much broader He lines than those on the DB island, partly explaining their separation.
-This may be due to this group having a systematically lower atmospheric He abundance; the effective temperature and surface gravity are similar between the DBs on the enclave and those on the main island, according to He atmosphere fitting conducted by \citet{gentilefusillo19}.
-The final spectrum is a tentatively-classified DB:, projected towards the lower right of the main continent.
-This spectrum shows peculiar emission features, which no doubt caused DR to exile it away from the other DBs.
-Indeed it is possible that this object is simply not a DB.
+The bottom panel of Fig.~\ref{fig:He_lines} shows false negatives which are not on the island.
+The first two have very weak He absorption lines, and may have been identified as DBs through spectral features in other parts of the spectrum.
+The third object has a large noise feature at likely due to lower sensitivity near the edge of the blue arm of the DESI spectrograph.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.48\textwidth]{figures/DBisland.pdf}
+\includegraphics[width=0.48\textwidth]{figures/fig4_He_line.pdf}
 \caption{
-    Top panel: dimensionality-reduced embedding of DESI spectra cropped between $5800$--$6200\,\text{\AA}$.
-    An island is isolated containing 200 objects, of which 183 are DBs (inc. DABs, DBZs etc.); some DBs are not on the island.
-    A streak of objects to the lower left consists mostly of extragalactic sources with shared emission features in this spectral range.
-    Second panel: three DB spectra on the island are shown, each featuring a strong He absorption at $5876\,\text{\AA}$ (dashed line).
+    Top panel: dimensionality-reduced embedding of DESI spectra cropped between $5500$--$6100\,\text{\AA}$.
+    An island is isolated containing about 200 objects, of which about 180 are DBs (inc. DABs, DBZs etc.); some DBs are not on the island.
+    Second panel: three spectra on the island are shown, each featuring a strong He absorption at $5876\,\text{\AA}$ (dashed line).
     Third panel: three objects on the island which are however not classified as DBs.
-    In some cases noise creates a small dip around the same wavelength as the He feature.
+    Shallow absorptions are just about visible.
     Bottom panel: three DBs \textit{not} located on the island.
-    Each spectrum shows much broader and flatter He lines than those of the DBs on the island.
-    The first two are members of a small enclave within the main continent; the third is projected towards the lower right and is only tentatively classified as a DB: by \citet{manser24}.
+    The first two spectra show very weak He absorption features; the third spectrum shows a large artefact.
 }
 \label{fig:He_lines}
 \end{figure}
@@ -582,7 +575,6 @@ The technique identifies absorption lines that have been missed even by visual c
 Additionally, dimensionality reduction can be used to help classify individual spectra external to the original dataset.
 There is no reason that the techniques outlined here could not be similarly applied to the subclassification of other subsets of spectroscopic surveys, such as main-sequence stars, quasars, or galaxies.
 As the coverage, depth, and resolution of spectroscopic surveys improve over the next few years, our work highlights the necessity and ease with which automated techniques can be exploited to maximise the scientific returns from these enormous datasets.
-
 
 \section*{Acknowledgements}
 
