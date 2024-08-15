@@ -79,7 +79,7 @@ i = 3085
 normalised_spectrum = meanstd(interp_if_snr_low(wlen, flux[i], ivar[i]))
 ax.plot(wlen, normalised_spectrum, c=MARKER_DF.loc["DC"]["c"], lw=1)
 ax.annotate(
-    names[i], xy=(0.975, 0.1), xycoords="axes fraction", ha="right", fontsize=12
+    names[i], xy=(0.985, 0.1), xycoords="axes fraction", ha="right", fontsize=10
 )
 ax.set_ylim(-6, 6)
 
@@ -93,9 +93,9 @@ for ax in axs[1:]:
     ax.set_yticks([])
     ax.axvline(3933.66, c="k", ls="--", lw=1, alpha=0.5)
     ax.axvline(3968.47, c="k", ls="--", lw=1, alpha=0.5)
+    ax.tick_params(axis="x", labelsize=12, top=True, direction="in")
 
 axs[2].set_ylabel("Flux [arbitrary]", fontsize=16, y=1.5)
-axs[2].tick_params(axis="x", labelsize=12)
 
 # ------------------------------
 # Save
