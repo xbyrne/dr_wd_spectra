@@ -8,15 +8,12 @@ from sklearn.manifold import TSNE
 import preprocessing as pp
 
 
-def reduce(spectra, random_state=0, wlen_mask=None):
+def reduce(spectra, random_state=0):
     """
     Applies dimensionality reduction to the spectra.
     """
     tsne = TSNE(n_components=2, random_state=random_state)
-
-    if wlen_mask is None:
-        return tsne.fit_transform(spectra)
-    return tsne.fit_transform(spectra[:, wlen_mask])
+    return tsne.fit_transform(spectra)
 
 
 if __name__ == "__main__":
@@ -27,22 +24,29 @@ if __name__ == "__main__":
     flux = fl["fluxes"]
     ivar = fl["ivars"]
 
-    print("Preprocessing...")
-    flux = pp.interp_if_snr_low(wlen, flux, ivar)
-    flux = pp.meanstd(flux)
-
     print("Applying dimensionality reductions...")
-    embedding_full = reduce(flux)
+    pp_flux = pp.meanstd(pp.interp_if_snr_low(wlen, flux, ivar))
+    embedding_full = reduce(pp_flux)
 
     He_line_mask = (wlen > 5800) & (wlen < 6200)
-    embedding_DB = reduce(flux, wlen_mask=He_line_mask)
+    pp_flux = pp.meanstd(
+        pp.interp_if_snr_low(
+            wlen[He_line_mask], flux[:, He_line_mask], ivar[:, He_line_mask]
+        )
+    )
+    embedding_DB = reduce(pp_flux)
 
     CV_line_mask = (
         ((wlen > 4300) & (wlen < 4400))
         | ((wlen > 4800) & (wlen < 4900))
         | ((wlen > 6500) & (wlen < 6600))
     )
-    embedding_CV = reduce(flux, wlen_mask=CV_line_mask)
+    pp_flux = pp.meanstd(
+        pp.interp_if_snr_low(
+            wlen[CV_line_mask], flux[:, CV_line_mask], ivar[:, CV_line_mask]
+        )
+    )
+    embedding_CV = reduce(pp_flux)
 
     print("Saving...")
     np.savez_compressed(
