@@ -16,6 +16,8 @@ To get visual spectral classifications of the WDs in the DESI EDR, we use the ca
 This is also downloaded from Zenodo (https://zenodo.org/records/10620344).
 This Zenodo record contains lots of extraneous files, e.g. scripts used to make plots in Manser+24; these are removed.
 
+The Python program `src/scripts/download_sdss_spectra.py` downloads some SDSS spectra used for the part of the paper which classifies new WD spectra against the DESI dataset.
+
 ## Reorganising data
 
 Downstream data analysis tasks are most convenient when everything is in a big numpy array.
