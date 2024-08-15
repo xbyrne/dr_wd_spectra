@@ -448,12 +448,12 @@ By zooming in to characteristic wavelength ranges, DR is therefore able to ident
 
 \begin{figure}
 \centering
-\includegraphics[width=0.47\textwidth]{figures/CVs.pdf}
+\includegraphics[width=0.48\textwidth]{figures/fig5_CVs.pdf}
 \caption{
     Top panel: dimensionality-reduced embedding of DESI spectra cropped to three regions around H\,$\alpha$, H\,$\beta$, and H\,$\gamma$.
     An isolated island to the top right shows all 12 CVs in the sample, identified as similar to each other by shared emission features in these regions.
     Lower panel: spectra of the CVs.
-    The ranges over which the spectra were cropped before DR is highlighted, and surrounds the strong (and in some cases double-peaked) emission features.
+    The ranges over which the spectra were cropped before DR is highlighted, and surrounds the strong, often double-peaked emission features.
 }
 \label{fig:CVs}
 \end{figure}
@@ -465,7 +465,7 @@ In addition to bulk classification of a large dataset of $N$ spectra, DR can aid
 This can be achieved as follows.
 \begin{enumerate}
 \item
-Interpolate the external spectrum to the wavelength grid of the DESI spectra, and append it, giving a dataset of $N+1$ spectra: $\xb_1, \xb_2, \dots, \xb_N, \xb^* \in \mathbb{R}^D$.
+Interpolate the external spectrum to the wavelength grid of the DESI spectra, and append it, giving a dataset of $N+1$ spectra: $\xb_1, \xb_2, \dots, \xb_N, \xb^* \in \mathbb{R}^{7781}$.
 \item
 Apply DR, giving $N+1$ two-dimensional points: $\yb_1, \dots,$ $\yb_N, \yb^* \in \mathbb{R}^2$.
 Since $N\gg1$, the resulting embedding will not be noticeably different from the embedding produced from the original set of $N$ spectra shown in Fig~\ref{fig:full_spectra}, though with an extra point $\yb^*$
