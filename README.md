@@ -62,6 +62,11 @@ The script `src/scripts/classify_external_spectra.py` appends an SDSS spectrum t
 By performing dimensionality reduction on each of these sets of $N+1$ spectra, the spectral class of the SDSS spectrum can be identified by seeing which DESI WDs it is embedded near to.
 These embeddings are in the file `data/embeddings_with_sdss.npz`.
 
+## Creating figures
+
+Running the scripts `src/scripts/create_fig<i>_<description>.py` reproduces the figures presented in the paper.
+(You may have to generate the requisite data first; see above.)
+
 ## References
 Manser+24:
 https://ui.adsabs.harvard.edu/abs/2024arXiv240218641M/abstract
