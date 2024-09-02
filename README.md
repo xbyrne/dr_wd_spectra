@@ -67,6 +67,12 @@ These embeddings are in the file `data/embeddings_with_sdss.npz`.
 Running the scripts `src/scripts/create_fig<i>_<description>.py` reproduces the figures presented in the paper.
 (You may have to generate the requisite data first; see above.)
 
+### Interactive plots
+
+Using the [Bokeh](https://bokeh.org/) package, we create some interactive plots, where you can hover over points in the embedding and see what spectrum was projected there.
+These are created using the script `src/scripts/create_interactive plots.py`, which creates a folder `src/interactive_plots` containing three HTML files embedded with such a plot.
+NB: the script also generates creates a folder `src/interactive_plots/spectra` with all the hover tooltips of all the spectra; it takes a few mins to do this.
+
 ## References
 Manser+24:
 https://ui.adsabs.harvard.edu/abs/2024arXiv240218641M/abstract
