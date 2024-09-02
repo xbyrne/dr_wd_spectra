@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from bokeh.plotting import figure, output_file
+from bokeh.plotting import figure, show, output_file
 from bokeh.models import ColumnDataSource
 
 import preprocessing as pp
@@ -59,7 +59,9 @@ def create_spectra_tooltips():
         ax.spines["right"].set_visible(False)
         ax.spines["left"].set_visible(False)
 
-        fg.savefig(f"../interactive_plots/spectra/{name}.png", dpi=100)
+        fg.savefig(
+            f"../interactive_plots/spectra/{name}.png", dpi=100, bbox_inches="tight"
+        )
         plt.close(fg)
 
 
@@ -80,7 +82,9 @@ def create_bokeh_df(emb):
     df["colour"] = df["colour"].replace("k", "#000000").replace("grey", "#808080")
     df["marker"] = [MARKER_DF.loc[cl]["marker"] for cl in class_references]
 
-    df["Teff"] = gf19["TeffH"].apply(lambda x: f"{x:.3g}")
+    df["Teff"] = gf19["TeffH"].apply(lambda x: f"{x:.0f}")
+
+    df["img_link"] = [f"../interactive_plots/spectra/{name}.png" for name in names]
 
     return df
 
@@ -88,10 +92,12 @@ def create_bokeh_df(emb):
 def create_interactive_plot(embedding, output_filename):
     # Tooltip for when you hover over a point
     tooltip = """
-    <div>
-    @name &nbsp; @classification; T=@Teff
+    <div style="font-size: 20px;">
+    @name &nbsp; @classification &nbsp T=@Teff
     </div>
-    <img src="@img_link"></img>
+    <div style="text-align: left; padding:0">
+        <img src="@img_link" style="padding:0;"></img>
+    </div>
     """
 
     p = figure(
@@ -121,8 +127,9 @@ def create_interactive_plot(embedding, output_filename):
             line_width=mlw,
         )
 
-        # Output to a file
-        output_file(output_filename)
+    # Output to a file
+    output_file(output_filename)
+    show(p)
 
 
 if __name__ == "__main__":
