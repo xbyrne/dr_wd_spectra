@@ -1,6 +1,6 @@
 """
-create_fig6_augmented.py
-Creates Figure 6 in the paper, which demonstrates a `supervised`
+create_fig7_augmented.py
+Creates Figure 7 in the paper, which demonstrates a `supervised`
 application of DR to classify external spectra.
 """
 
@@ -103,4 +103,4 @@ for ax in axs[2, :]:
 axs[4, 1].set_xlabel("Wavelength [Å]", fontsize=16)
 
 
-fg.savefig("../tex/figures/fig6_augmented.pdf", dpi=300, bbox_inches="tight")
+fg.savefig("../tex/figures/fig7_augmented.pdf", dpi=300, bbox_inches="tight")
