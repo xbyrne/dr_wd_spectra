@@ -62,6 +62,11 @@ The script `src/scripts/classify_external_spectra.py` appends an SDSS spectrum t
 By performing dimensionality reduction on each of these sets of $N+1$ spectra, the spectral class of the SDSS spectrum can be identified by seeing which DESI WDs it is embedded near to.
 These embeddings are in the file `data/embeddings_with_sdss.npz`.
 
+`src/scripts/subtract_continuum.py` removes some of the temperature information from the WD spectra by subtracting a continuum from each of them.
+This removes the 'tilt' that black-body continua impart to a spectrum (although doesn't affect the shape of the absorption features, which is also temperature-dependent).
+This script also applies dimensionality reduction to the continuum_subtracted_spectra.
+The continuum-subtracted spectra and the dimension-reduced embdeding are saved to `data/continuum_subtracted_spectra_embedding.npz`.
+
 ## Creating figures
 
 Running the scripts `src/scripts/create_fig<i>_<description>.py` reproduces the figures presented in the paper.

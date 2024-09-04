@@ -67,7 +67,7 @@ def create_legend_handles():
     for cl_code in ["DA", "DB", "DC", "DZ", "DQ", "DO"]:
         handles.append(
             class_handle(
-                cl_code+"*",
+                cl_code + "*",
                 MARKER_DF.loc[cl_code, "c"],
                 marker=MARKER_DF.loc[cl_code, "marker"],
                 markersize=10,
