@@ -42,7 +42,7 @@ handles.append(
         color="w",
         markerfacecolor="b",
         markersize=7,
-        label="DB, DAB, ...",
+        label="D*B",
     )
 )
 handles.append(
@@ -53,7 +53,7 @@ handles.append(
         color="w",
         markerfacecolor="k",
         markersize=7,
-        label="Non-DB",
+        label="Other",
     )
 )
 ax.legend(handles=handles, fontsize=12)
@@ -85,7 +85,7 @@ for j, i in enumerate(eg_DBs):
         textcoords="offset points",
     )
 
-ax.set_title("Example DB spectra", fontsize=16, y=0.8)
+ax.set_title("Example D*B spectra", fontsize=16, y=0.8)
 ax.set_ylim(-12, 6)
 
 # ------------------------------

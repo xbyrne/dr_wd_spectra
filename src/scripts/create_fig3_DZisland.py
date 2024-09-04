@@ -59,7 +59,7 @@ ax.set_ylim(23, 26)
 ax.set_xticks([])
 ax.set_yticks([])
 leg = ax.legend(loc="lower right", fontsize=12)
-leg.get_texts()[0].set_text("DZ, DZA, ...")
+leg.get_texts()[0].set_text("DZ*")
 leg.get_texts()[1].set_text("DBZ")
 
 # ------------------------------
