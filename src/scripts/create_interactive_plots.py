@@ -89,7 +89,7 @@ def create_bokeh_df(emb):
     return df
 
 
-def create_interactive_plot(embedding, output_filename):
+def create_interactive_plot(embedding, output_filename=None):
     # Tooltip for when you hover over a point
     tooltip = """
     <div style="font-size: 20px;">
@@ -127,6 +127,8 @@ def create_interactive_plot(embedding, output_filename):
             line_width=mlw,
         )
 
+    if output_filename is None:
+        return p
     # Output to a file
     output_file(output_filename)
     show(p)
