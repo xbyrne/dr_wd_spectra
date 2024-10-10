@@ -155,6 +155,14 @@ if __name__ == "__main__":
             c=marker["c"],
             marker=marker["marker"],
         )
+    # Replot the DO, since it's hard to see
+    ax.scatter(
+        embedding[class_code == "DO", 0],
+        embedding[class_code == "DO", 1],
+        s=15,
+        c=MARKER_DF.loc["DO"]["c"],
+        marker=MARKER_DF.loc["DO"]["marker"],
+    )
 
     leg = ax.legend(
         handles=create_legend_handles(),
