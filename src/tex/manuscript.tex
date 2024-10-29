@@ -65,7 +65,6 @@
 \def\Teff{T_\mathrm{eff}}
 \def\xb{\vb{x}}
 \def\yb{\vb{y}}
-\newcommand{\red}[1]{\textcolor{red}{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -74,9 +73,9 @@
 % Title of the paper, and the short title which is used in the headers.
 % Keep the title short and informative.
 \title[
-    \red{Semi-supervised} WD Spectral Classification
+    Semi-supervised WD Spectral Classification
 ]{
-    \red{Semi-supervised} Spectral Classification of DESI White Dwarfs by Dimensionality Reduction
+    Semi-supervised Spectral Classification of DESI White Dwarfs by Dimensionality Reduction
 }
 
 % The list of authors, and the short list which is used in the headers.
@@ -130,9 +129,9 @@ As a new generation of large-sky spectroscopic surveys comes online, the enormou
 Modern unsupervised techniques have the power to group spectra based on their dominant features, circumventing the complete reliance on training data suffered by supervised methods.
 We outline the use of dimensionality reduction to generate a 2D map of the structure of an intermediate-resolution spectroscopic dataset.
 This technique efficiently separates white dwarfs of different spectral classes in the Dark Energy Spectroscopic Instrument's Early Data Release (DESI EDR), identifying spectral features that had been missed even by visual classification.
-By focusing the method on particular spectral regions, we identify white dwarfs with helium features at 90 per cent \red{recall}, and cataclysmic variables at 100 per cent \red{recall}, illustrating rapid selection of low-contamination samples from spectroscopic surveys.
+By focusing the method on particular spectral regions, we identify white dwarfs with helium features at 90 per cent recall, and cataclysmic variables at 100 per cent recall, illustrating rapid selection of low-contamination samples from spectroscopic surveys.
 We also demonstrate the use of dimensionality reduction in a supervised manner, outlining a procedure to classify any white dwarf spectrum in comparison with those in the DESI EDR.
-With upcoming surveys promising tens of millions of spectra, our work highlights the potential for \red{semi-supervised} techniques as an efficient means of classification and dataset visualisation.
+With upcoming surveys promising tens of millions of spectra, our work highlights the potential for semi-supervised techniques as an efficient means of classification and dataset visualisation.
 \end{abstract}
 
 % Select between one and six entries from the list of approved keywords.
@@ -165,7 +164,7 @@ an all-sky survey from two $2.5\,\text{m}$ telescopes (one in each hemisphere), 
 \textbf{WEAVE}
 (William Herschel Telescope Enhanced Area Velocity Explorer; \citealt{weave}): a northern-hemisphere complement to 4MOST, WEAVE will record accurate spectroscopic velocities of Galactic disk and halo stars, IFU H~\textsc{i} maps of $\sim10^4$ low-redshift galaxies, and wide-area views of galaxy clusters.
 \end{itemize}
-\red{These surveys will all achieve first light by early 2025;} SDSS-V's first data release (SDSS DR19; \citealt{sdssdr19}) and DESI's early data release (DESI EDR; \citealt{desiedr}) were delivered \red{in 2023}.
+These surveys will all achieve first light by early 2025; SDSS-V's first data release (SDSS DR19; \citealt{sdssdr19}) and DESI's early data release (DESI EDR; \citealt{desiedr}) were delivered in 2023.
 As these spectroscopic surveys begin returning enormous quantities of data -- and with the exabyte-scale Legacy Survey of Space and Time (LSST; \citealt{lsst}) on the horizon -- automated techniques will become absolutely necessary to extract scientific results from the vast wealth of data collected.
 
 Entries in astronomical datasets often have high dimensionality.
@@ -176,19 +175,19 @@ However, whereas a $D$-dimensional data point might ostensibly live in $\mathbb{
 In a spectrum, the flux in a given bin will usually be similar to the flux in adjacent bins.
 Similarly, two different sources of the same astrophysical type (e.g.\ two stars of the same spectral classification) will have similar spectra, and will thus be nearby in the data space.
 This massively reduces the effective dimensionality of the dataset, compared to the dimensionality of the raw data points themselves.
-This principle has motivated the development of several \textit{dimensionality reduction} techniques, including Principal Component Analysis (PCA; \citealt{pca}), \red{self-organising maps \citep{kohonen90},} diffusion maps \citep{coifman06, lafon06}, Locally Linear Embedding (LLE; \citealt{roweis00}), $t$-distributed Stochastic Neighbour Embedding ($t$SNE; \citealt{tsne}), and Uniform Manifold Approximation and Projection (UMAP; \citealt{umap}).
+This principle has motivated the development of several \textit{dimensionality reduction} techniques, including Principal Component Analysis (PCA; \citealt{pca}), self-organising maps \citep{kohonen90}, diffusion maps \citep{coifman06, lafon06}, Locally Linear Embedding (LLE; \citealt{roweis00}), $t$-distributed Stochastic Neighbour Embedding ($t$SNE; \citealt{tsne}), and Uniform Manifold Approximation and Projection (UMAP; \citealt{umap}).
 These methods calculate a two-dimensional map of the dataset -- known as an \textit{embedding} -- in which the distances between pairs of nearby points in the data space are preserved as far as possible.
 
 Dimensionality reduction techniques have found widespread use in a variety of areas of astronomy, including the analysis of low-resolution spectra.
 \citet{boroson92} use PCA to explore correlations between the physical parameters of 87 low-redshift quasars observed in a small spectroscopic campaign.
 \citet{richards09} employ PCA alongside diffusion maps to predict redshifts for several thousand low-redshift galaxy spectra observed by SDSS DR6.
 \citet{hawkins21} use $t$SNE to reduce the dimensionality of a set of low-resolution ($R\equiv \lambda / \Delta \lambda \sim750$) optical spectra of stars in the Hobby-Eberly Telescope Dark Energy Experiment (HETDEX; \citealt{gebhardt21}) to estimate a star's effective temperature ($\Teff$), gravitational field strength ($\log g$), and metallicity, finding 416 metal-poor candidate stars.
-\citet{kao24} apply UMAP to low-resolution ($R\sim50$) Gaia DR3 XP coefficients of white dwarf \red{(WD)} spectra, isolating a group of 465 objects of which 90 are known \textit{polluted} \red{WD}s, showing metal absorption features; the remaining 375 candidates are subject to an ongoing high-resolution spectroscopic campaign.
+\citet{kao24} apply UMAP to low-resolution ($R\sim50$) Gaia DR3 XP coefficients of white dwarf (WD) spectra, isolating a group of 465 objects of which 90 are known \textit{polluted} WDs, showing metal absorption features; the remaining 375 candidates are subject to an ongoing high-resolution spectroscopic campaign.
 Dimensionality reduction has however not been extensively applied to datasets of higher-resolution spectra, perhaps due to the much higher dimensionality of spectra with many more wavelength bins.
 
-\red{WD}s are the final state of the $\gtrsim97$ per cent of stars with a zero-age mass of less than $9$--$12\,\mathrm{M}_\odot$ \citep{lauffer18, althaus10, althaus21}.
+WDs are the final state of the $\gtrsim97$ per cent of stars with a zero-age mass of less than $9$--$12\,\mathrm{M}_\odot$ \citep{lauffer18, althaus10, althaus21}.
 Without internal nuclear fusion, these stellar cinders gradually cool on well-characterised timescales, making them important tracers of the evolution and assembly of the Galaxy (e.g., \citealt{winget87, tremblay14}).
-The spectrum of a \red{WD} usually deviates from that of a black body due to absorbing species in its atmosphere.
+The spectrum of a WD usually deviates from that of a black body due to absorbing species in its atmosphere.
 With a typical mass of $\sim0.6\,\mathrm{M}_\odot$ and radius of $\sim \mathrm{R}_{\earth}$, the extreme gravitational field gives WDs a strongly stratified structure.
 Metals diffuse down through WD atmospheres on timescales much shorter than their cooling age \citep{schatzman45, paquette86, koester09, wyatt14}, leaving thin photospheres dominated by H and/or He.
 Most WD spectra show absorption features due to these light elements, and a WD is classified respectively as DA or DB if spectral features of neutral H or He are present.
@@ -199,11 +198,11 @@ In other cases, instabilities in remnant planetary systems can cause planetesima
 These so-called polluted WDs provide unique insights into the bulk composition and geology of rocky exoplanets.
 In the absence of other features, such metal-line WDs are classified DZ.
 If, say, both H features and metal features are both present, the WD is instead classified as DAZ or DZA, depending on which features are strongest.
-Similarly, \red{WD}s may have more auxiliary classifications, which are listed in order of prominence in the spectrum.
-Thus a DBZA shows strong neutral He features, weaker metal features, and even weaker H features. \red{For convenience, we will refer to WDs with a particular \textit{primary} classification as, for example `DA*', to include DA, DAB, DAZ, etc.
+Similarly, WDs may have more auxiliary classifications, which are listed in order of prominence in the spectrum.
+Thus a DBZA shows strong neutral He features, weaker metal features, and even weaker H features. For convenience, we will refer to WDs with a particular \textit{primary} classification as, for example `DA*', to include DA, DAB, DAZ, etc.
 Additionally, we use the broader classification `D*A' to include WDs with primary \textit{or} secondary classification, inclusive of DA, DAB, DZA, etc.
 D*A therefore encompasses any WD whose spectrum contains visible Balmer features.
-Similarly, D*Z describes any polluted WD, including those with other stronger spectral features.}
+Similarly, D*Z describes any polluted WD, including those with other stronger spectral features.
 
 Following the release of the DESI EDR \citep{desiedr}, the spectra of 3673 WD candidates were visually inspected and classified by \citet{manser24}, spectroscopically confirming 2706 WDs, of which 1400 had not been previously observed spectroscopically.
 The higher resolution of DESI ($R\sim2500$--$5000$) enables the identification of spectral features not visible in lower-resolution spectra.
@@ -214,12 +213,12 @@ One class of methods for automatically classifying and analysing WD spectra that
 However, a drawback of supervised machine learning techniques is the reliance on the training set used to train the model.
 The `imbalanced learning problem' describes the well-documented difficulties of training supervised classifiers on datasets with large class imbalances (e.g., \citealt{he09, johnson19}).
 Such class imbalances are inevitable in WD datasets as some spectral types are naturally rarer than others: the DESI EDR contained 1958 DAs, but only one DO \citep{manser24}.
-\red{Although this may be mitigated through the addition of synthetic spectra to the training set, any biases regarding the generation of the spectra or the modelling of instrumental effects would simply be learned by the trained model.
-In addition to class imbalance,} incorrect labels in the training set can severely limit the accuracy of the resulting model (e.g., \citealt{frenay14}).
+Although this may be mitigated through the addition of synthetic spectra to the training set, any biases regarding the generation of the spectra or the modelling of instrumental effects would simply be learned by the trained model.
+In addition to class imbalance, incorrect labels in the training set can severely limit the accuracy of the resulting model (e.g., \citealt{frenay14}).
 Unsupervised procedures such as dimensionality reduction do not rely on an external training set; they merely reveal structures present within the dataset itself.
 
-In this work, we apply dimensionality reduction -- specifically, $t$SNE -- to intermediate-resolution \red{WD} spectra from the DESI EDR, outlining the method's ability to classify WD spectra in an \red{semi-supervised} way.
-\red{Dimensionality reduction itself is unsupervised, but the analysis of the resulting embedding uses the visual classifications of \citet{manser24}}.
+In this work, we apply dimensionality reduction -- specifically, $t$SNE -- to intermediate-resolution WD spectra from the DESI EDR, outlining the method's ability to classify WD spectra in an semi-supervised way.
+Dimensionality reduction itself is unsupervised, but the analysis of the resulting embedding uses the visual classifications of \citet{manser24}.
 We emphasise that these methods could equally be applied to sets of main-sequence stars, quasars, galaxies, or any other set of sources targeted by the aforementioned spectroscopic surveys.
 The paper proceeds as follows.
 In Section~\ref{sec:methods}, we describe the dataset and dimensionality reduction in more detail, as well as important preprocessing considerations.
@@ -274,8 +273,8 @@ Artefacts usually correspond to pixels with very low signal-to-noise: pixels wit
 Fig.~\ref{fig:preprocessing} shows that major artefacts are removed by this step, though some sky lines and telluric features remain.
 Overzealous removal of artefacts could remove genuine spectral features, particularly weaker ones.
 We found that the interpolation described improves the subsequent dimensionality reduction as compared to, say, median boxcar smoothing.
-Following the removal of artefacts, the spectra are normalised to zero mean and unit variance\red{, to account for the fact that WDs at different distances will show different absolute fluxes.
-This particular normalisation has been used in previous work in the data-driven spectroscopic analysis of WDs (e.g., \citealt{vincent23}), and we found this gave better results than many other normalisation strategies}.
+Following the removal of artefacts, the spectra are normalised to zero mean and unit variance, to account for the fact that WDs at different distances will show different absolute fluxes.
+This particular normalisation has been used in previous work in the data-driven spectroscopic analysis of WDs (e.g., \citealt{vincent23}), and we found this gave better results than many other normalisation strategies.
 
 \begin{figure*}
 \centering
@@ -313,7 +312,7 @@ The nature of these structures is elucidated by Fig.~\ref{fig:full_spectra}(b) a
 Several interesting features include:
 \begin{itemize}
 \item
-The V-shaped sequence consists of largely DA* \red{WD}s;
+The V-shaped sequence consists of largely DA* WDs;
 \item
 The secondary sequence in the upper part of the frame contains DB*s, DZ*s, DQs, and DCs;
 \item
@@ -343,7 +342,7 @@ A few are also scattered elsewhere.
     Other sources not corresponding to individual WDs have different symbols (see key).
     The main feature of the embedding is the sequence of DA*s (red), though several other clusters are clear (see text).
     (c) The embedding is colour-coded by effective temperature, according to the hydrogen-atmosphere WD model which best fits the sources' Gaia photometry \citep{gentilefusillo19}.
-    The DA sequence extends from hotter WDs on the left \red{(among which lies the singular DO)}, around to cooler WDs at the top right.
+    The DA sequence extends from hotter WDs on the left (among which lies the singular DO), around to cooler WDs at the top right.
     Note that objects with a low probability of being a WD ($P_\mathrm{WD} < 0.75$; see \citealt{gentilefusillo15}) are not assigned a temperature \citep{gentilefusillo19}.
 }
 \label{fig:full_spectra}
@@ -372,20 +371,18 @@ As the temperature of a DA falls below around $\Teff\approx 5000\,\text{K}$, hyd
 However, the transition is continuous: Balmer lines do not suddenly disappear below some sharp temperature cutoff.
 As such, the distinction between DA and DC is a fuzzy one, and whether a cool hydrogen-atmosphere WD spectrum is classified as DA or DC ultimately depends on whether a human classifier can subjectively identify H features against noise.
 This task is not trivial, but we argue that it is ultimately arbitrary: there is negligible physical difference between a DA with very weak Balmer lines, and a hydrogen-atmosphere DC.
-Unable to distinguish between these two arbitrarily similar classes, dimensionality reduction thus blends the low-temperature DAs with the DCs\red{, in a sense including the \textit{strength} of spectral features in the classification, rather than the binary presence or absence of features}.
+Unable to distinguish between these two arbitrarily similar classes, dimensionality reduction thus blends the low-temperature DAs with the DCs, in a sense including the \textit{strength} of spectral features in the classification, rather than the binary presence or absence of features.
 
-A DC \red{WD}, as labelled by visual classification campaigns, is not necessarily one with a pure black-body spectrum; it is merely one where any spectral features are at a level smaller than the noise.
+A DC WD, as labelled by visual classification campaigns, is not necessarily one with a pure black-body spectrum; it is merely one where any spectral features are at a level smaller than the noise.
 It is therefore likely that higher-signal-to-noise spectra would reclassify some of the putative DCs in the DESI EDR WD catalogues.
 Conversely, it is possible that noise features at the location of a spectral feature in the spectrum of a genuine DC might fool a human classifier into labelling it otherwise.
 Rather than exhibiting a weakness of the technique, we argue that a cool DA is objectively more similar to a H-atmosphere DC, than it is to a much hotter DA with strong Balmer features.
 It is therefore more natural that cool DAs should be projected near to DCs.
-\red{
 Dimensionality reduction faithfully reflects this subtlety by projecting the cool DAs with weak absorption features nearby to DCs with no visible features.
 Similarly, the hot end of the DA sequence is somewhat blended with other classes of very hot objects, most commonly subdwarfs.
 Nonetheless, the central stretch of the DA sequence shows that dimensionality reduction very precisely identifies WD Balmer lines, with between 92 and 98 per cent of this midsection classed as D*As or WD-main-sequence binaries by \citet{manser24} (depending on how liberally one defines the midsection).
 This technique therefore identifies WDs with clear Balmer features at high precision, and edge cases are faithfully presented as such.
 While not necessarily assigning a strict classification to these transitional WDs, such a classification is physically not very significant anyway. 
-}
 
 Similar trends are borne out in the secondary sequence, which shows DB*s at the top of the embedding transitioning into a mixture of DCs and DQs.
 The transition from DB to DC has a very similar physical origin to the DA-to-DC transition discussed in the previous paragraph, but at higher temperature, as seen in Fig.~\ref{fig:full_spectra}(c).
@@ -421,7 +418,7 @@ These objects appear to have been grouped together owing to the presence of Ca~H
 The presence of Ca absorption lines in the DC's spectrum suggests that this is in fact a DZ; indeed \citet{kleinman13} classify this source as a DZ based on its SDSS DR7 spectrum.
 The bottom panel of Figure~\ref{fig:DZisland} shows the absorption lines to be quite weak, and would probably not have been noticeable without zooming in.
 While large visual classification campaigns are reliable, this example illustrates that errors are nonetheless possible, and that such errors can be easily identified with automated methods such as dimensionality reduction.
-This particular case also illustrates the ability of dimensionality reduction to quickly create a high-\red{recall} sample of polluted WDs (in this case 100 per cent \red{recall}) from a spectroscopic dataset.
+This particular case also illustrates the ability of dimensionality reduction to quickly create a high-recall sample of polluted WDs (in this case 100 per cent recall) from a spectroscopic dataset.
 
 Finally, we note that there is no clear trend in the radial velocity of the WDs in the sample.
 There is a very narrow range of redshifts in the sample: around 97\% of the DAs have a redshift within 0.005 of the mean.
@@ -490,7 +487,7 @@ This noise feature also escaped removal by the preprocessing step, and has led i
 \subsubsection{Balmer lines and cataclysmic variables}
 \label{sec:CVs}
 
-Cataclysmic variables (CVs) are binary systems in which a donor star overfills its Roche lobe and transfers matter onto a \red{WD}.
+Cataclysmic variables (CVs) are binary systems in which a donor star overfills its Roche lobe and transfers matter onto a WD.
 The characteristic spectral features of a CV are strong emission lines from the transferred material, which depending on the orientation of the system and the WD's magnetic field strength may be double-peaked \citep{smak69, huang72}.
 
 As these unique features are most commonly seen in the Balmer series, we isolate CVs from the DESI EDR by cropping the spectra to three windows around H$\,\alpha$, H$\,\beta$ and H$\,\gamma$:
@@ -516,10 +513,8 @@ By zooming in to characteristic wavelength ranges, dimensionality reduction is t
 
 \subsection{Classifying new white dwarf spectra against DESI EDR}
 
-\red{
 This work aims to provide a tool to help in the classification of imminent large spectroscopic WD datasets, rather than the classification of individual objects.
 However, the latter can also be achieved, by using dimensionality reduction in a supervised way.
-}
 Here we present a means to estimate the classification of an additional spectrum against the $N$ WDs in the DESI EDR, by applying dimensionality reduction to a dataset of $N+1$ spectra: the DESI EDR WDs, plus the spectrum one wishes to classify.
 This is achieved as follows, and as schematized in Fig.~\ref{fig:external_procedure}.
 \begin{enumerate}
@@ -554,12 +549,10 @@ The DCs, DQs and DAOs are also projected amongst other WDs in their respective c
 For example, the DC is projected near to one end of the He-atmosphere sequence, which is occupied by not only DCs but also DQs, DZs, and even extragalactic sources.
 Classifying them in the manner suggested would therefore be challenging.
 Additional data would be necessary to distinguish it as a DC, including perhaps visual inspection.
-\red{
 However, this ambiguity is not necessarily a drawback.
 As we outline in Section~\ref{sec:full_spectra}, the WD classification system does not separate WDs into wholly distinct classes: for example, a very cool DA is physically almost identical to a DC.
 If an external WD spectrum is projected by the above method near the boundary between the cool DAs and the DCs, then this would inform the classifier that the spectrum is of a H-atmosphere WD around $5000\,\text{K}$.
 Whether it should be classified as a DA or a DC has little physical meaning.
-}
 
 One could presumably apply this technique using the trick of cropping the spectra (Section~\ref{sec:zoom}), to investigate the similarity of a particular spectral range to those of the DESI EDR; this is beyond the scope of this work.
 
@@ -590,8 +583,8 @@ We argue that automated methods such as dimensionality reduction would significa
 Under the assumption that the DESI EDR WD catalogue is representative of the WD population, applying dimensionality reduction to any large WD spectroscopic survey with a similar selection function would give maps analogous to those presented here.
 Such maps would feature a large swathe of H-atmosphere DA*s and DCs organised by temperature, a second sequence of He-atmosphere DB*s, DQs, and DCs, and various islands of DZ*s, MS stars, and extragalactic sources.
 Dimensionality reduction thus provides a powerful and rapid initial classification, broadly separating WDs with Balmer lines from those with He lines.
-\red{If a sufficiently diverse subset of the dataset is labelled -- as will be the case with the full DESI data release, given that the EDR has been classified -- then further classification can be done in a semi-supervised way.}
-Zooming in on particular lines, more precise classifications can be made with high \red{recall}.
+If a sufficiently diverse subset of the dataset is labelled -- as will be the case with the full DESI data release, given that the EDR has been classified -- then further classification can be done in a semi-supervised way.
+Zooming in on particular lines, more precise classifications can be made with high recall.
 Locating spectra on a map offers an intuitive -- and crucially, automated -- assessment of the likely classification of a spectrum.
 This could be used in conjunction with other, non-spectral information, such as the source's \textit{Gaia} magnitudes, or the source's `probability of being a white dwarf' ($P_\text{WD}$; \citealt{gentilefusillo15}), when determining spectral class.
 
@@ -601,20 +594,20 @@ Secondly, as a result, it is far more readily repeatable and verifiable.
 Thirdly, it is objective, as it deals with the data directly; visual inspection relies on the qualitative human interpretation of an image, which is less reproducible and permits no quantitative judgement of how much stronger a feature is than the noise.
 Related to this point is the fact that dimensionality reduction effectively `sorts' the spectra by the strength of spectral features, as exhibited by the smooth transition from cool DAs to DCs (Section~\ref{sec:full_spectra}).
 
-\subsection{Rare classes and the benefits of \red{semi-supervised} methods}
+\subsection{Rare classes and the benefits of semi-supervised methods}
 \label{sec:rare}
 
 For some classes with little representation in the EDR, the full release may contain enough similar objects for them to form their own cluster.
-For example, the EDR contains a single \red{WD} classified DO (J171600.53+422131.17; \citealt{manser24}), along with 10 DAOs, near the hot (left-hand) end of the DA sequence of Fig.~\ref{fig:full_spectra}.
+For example, the EDR contains a single WD classified DO (J171600.53+422131.17; \citealt{manser24}), along with 10 DAOs, near the hot (left-hand) end of the DA sequence of Fig.~\ref{fig:full_spectra}.
 With more DOs and DAOs in the full data release, it is reasonable to expect that dimensionality reduction would be able to separate them out from the DA sequence based on their common He~\textsc{ii} lines.
 
-Such poorly-represented classes also highlight advantages of \red{semi-supervised} techniques over, for example, fully supervised machine learning.
+Such poorly-represented classes also highlight advantages of semi-supervised techniques over, for example, fully supervised machine learning.
 The accuracy of supervised models is entirely dependent on their training data, and strongly imbalanced training sets make recognising underrepresented classes more difficult (e.g., \citealt{he09, johnson19, das23}).
-As an extreme example, if one class constitutes 99 per cent of the training set, then a trivial model which predicts the dominant class for every data point would \red{have a precision of} 99 per cent.
+As an extreme example, if one class constitutes 99 per cent of the training set, then a trivial model which predicts the dominant class for every data point would have a precision of 99 per cent.
 Supervised machine learning techniques are thus less successful at identifying rarer classes.
 With dimensionality reduction a substantially unique spectrum would be embedded far away from the more common classes.
 Additionally, although multiclass classifiers allow for uncertainty in their predictions -- by outputting a set of numbers summing to one, often interpreted as a discrete probability distribution over the possible classes -- supervised classifiers often erroneously make very high-confidence predictions, especially for data not well-represented in the training set (e.g., \citealt{nguyen15, guo17, hein19}).
-The \red{semi-supervised} technique presented in this work automatically accounts for such uncertain classifications, albeit qualitatively: spectra with minuscule Balmer features would be located in the overlap between DA and DC regions of the embedding, naturally informing a human classifier of some uncertainty in the classification.
+The semi-supervised technique presented in this work automatically accounts for such uncertain classifications, albeit qualitatively: spectra with minuscule Balmer features would be located in the overlap between DA and DC regions of the embedding, naturally informing a human classifier of some uncertainty in the classification.
 As discussed in Section~\ref{sec:full_spectra}, this uncertainty is somewhat moot, and is as much a classification of the noise level in the spectrum as of the WD itself.
 If a human classifier desired to distinguish between the two cases, they would devote more effort to identifying distinguishing features in the spectrum.
 However, unambiguous spectra located solidly in the DA region would merely require a confirmatory glance at most.
@@ -667,7 +660,7 @@ All but one of the CVs is found in a small island just below the DB*s, even thou
 
 Colour cuts have often been used to select WDs from large photometric datasets such as SDSS \citep{eisenstein06, gentilefusillo15}, as well as to look for WDs with particular features such as metal pollution \citep{hollands15}.
 These colour cuts are carried out by plotting each source in $(u-g)$-$(g-r)$ space and selecting some particular region.
-In a sense, these colour-colour plots constitute \red{a very} rudimentary \red{form of} dimensionality reduction, as they deproject spectral information into a two-dimensional map.
+In a sense, these colour-colour plots constitute a very rudimentary form of dimensionality reduction, as they deproject spectral information into a two-dimensional map.
 Several similarities between these plots and the embeddings shown in this work are outlined here.
 
 \begin{itemize}
@@ -687,22 +680,20 @@ As discussed in Section~\ref{sec:full_spectra}, there is a small gap in the embe
 There is a similar gap in the distribution of \textit{Gaia} colours of DCs in the DESI EDR around $\mathit{BP}-\mathit{RP}=0.75$ (see fig.~4 of \citealt{manser24}), suggesting poor sampling in a particular temperature region for DCs.
 \end{itemize}
 
-\red{
 We argue that dimensionality reduction offers a significant improvement in the identification of spectral classes compared to simple colour-colour plots.
 The separation between H- and He-dominated atmospheres is much more distinct, as the Balmer series seemingly has a larger effect on a spectrum's position in data space than on its photometry.
 Further, while strong metal pollution can have a significant effect on photometry \citep{hollands15}, weaker absorption lines would not, yet dimensionality reduction readily identifies them.
 This is evident in the fact that J160711.86+532157.6 is projected onto an island with other D*Zs, despite the Ca~\textsc{ii} lines being so weak that they were missed even by visual inspection (see Fig.~\ref{fig:DZisland}).
 The increased power over colour-colour diagrams is ultimately due to the fact that while the presence of a narrow absorption line might have only a minimal impact on an object's photometry, it can move a spectral vector a significant distance in data space, allowing the line to be recognised by dimensionality reduction but not colour-colour plots.
-}
 
 
 \subsection{Limitations}
 
-It is clear that dimensionality reduction alone is not capable of \red{neatly} classifying the spectra of all WD candidates.
+It is clear that dimensionality reduction alone is not capable of neatly classifying the spectra of all WD candidates.
 Though the technique is quickly able to inform the classification of a large fraction of the dataset, particularly when focused on a wavelength range around some distinctive spectral features, drawbacks to the technique are outlined in this subsection.
 
 As outlined in Section~\ref{sec:rare}, dimensionality reduction does not simply take a spectrum as input and produce a set of pseudo-probabilities of various classes, as with supervised multiclass classifiers.
-While such a classification could be biased and may not reflect the nuances of WD spectra\red{l classification}, the outputs are readily interpretable and require no further human intervention.
+While such a classification could be biased and may not reflect the nuances of WD spectral classification, the outputs are readily interpretable and require no further human intervention.
 Locating a spectrum on a map relative to others may require some human judgement, which, while less time-consuming than examining the overall spectrum, is less trivial than simply receiving a set of probabilities and taking the class with the highest probability.
 
 There are multiple regions of the embedding shown in Fig.~\ref{fig:full_spectra} where spectra of different classes are embedded close together.
@@ -736,21 +727,20 @@ The weak scaling makes dimensionality reduction a suitable tool for much larger 
 
 We outline the use of dimensionality reduction as an aid in the classification of large-sky spectroscopic surveys.
 Providing a proof-of-concept through the application of $t$SNE to the DESI EDR WD catalogue, we demonstrate the method's ability to map out the structure of an intermediate-resolution spectroscopic survey, identifying spectra of various classes, in a way which naturally indicates uncertainty between classes.
-By focusing on spectral windows containing particular features, sources with spectral features in these windows can be identified with high \red{recall}: CVs and WDs with helium lines can be identified with respectively 100 per cent and 90 per cent \red{recall}, as judged against human classification.
+By focusing on spectral windows containing particular features, sources with spectral features in these windows can be identified with high recall: CVs and WDs with helium lines can be identified with respectively 100 per cent and 90 per cent recall, as judged against human classification.
 The technique identifies spectral features that have been missed even by visual classification, and takes only a few seconds to indicate spectral classifications for the entire catalogue.
 Additionally, we present a means to use dimensionality reduction in a supervised manner to classify WD spectra by comparison with those in the DESI EDR.
 
-\red{
 The procedures outlined here could assist in the classification of the several upcoming large-sky spectroscopic surveys targeting WDs, enabling a quicker path to various astrophysical studies that depend on these classification.
 These include: the evolution and internal structure of WDs; the behaviour and physical processes characterising CVs; the fraction of WDs showing pollution; the composition of exoplanetary material.
 Such classification campaigns would proceed by applying dimensionality reduction to the spectroscopic dataset, labelling any whose spectral class is already known, and using this as an accurate prior for other spectra clustered nearby.
-These methods} would be equally applicable to the classification of other subsets of large spectroscopic surveys, such as main-sequence stars, quasars, or galaxies.
+These methods would be equally applicable to the classification of other subsets of large spectroscopic surveys, such as main-sequence stars, quasars, or galaxies.
 As the coverage, depth, and resolution of these surveys improve over the next few years, our work highlights the necessity and ease with which automated techniques can be exploited to maximise the scientific returns from these enormous datasets.
 
 \section*{Acknowledgements}
 
-\red{The authors thank the anonymous reviewer for their many insightful comments, which have significantly improved the manuscript.}
-We also thank Andrew Swan for many useful comments, Keith Hawkins\red{, Vasily Belokurov} and Mariona Badenas-Agusti for discussions on the normalisation of spectra, Siyi Xu for advice on the interpretation of the embeddings\red{, and Olivier Vincent for advice on nomenclature}.
+The authors thank the anonymous reviewer for their many insightful comments, which have significantly improved the manuscript.
+We also thank Andrew Swan for many useful comments, Keith Hawkins, Vasily Belokurov and Mariona Badenas-Agusti for discussions on the normalisation of spectra, Siyi Xu for advice on the interpretation of the embeddings, and Olivier Vincent for advice on nomenclature.
 
 % DESI required statements
 This research used data obtained with the Dark Energy Spectroscopic Instrument (DESI).
